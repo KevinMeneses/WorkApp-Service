@@ -8,8 +8,11 @@ class UserRepository {
     fun findUserByCredentials(username: String, password: String) =
         users.find { it.username == username && it.password == password }
 
-    fun createUser(user: User) : User? =
-        user.takeIf { users.add(it) }
+    fun createUser(user: User) =
+        users.add(user)
+
+    fun findUserById(userId: String) =
+        users.find { it.id == userId }
 
     private companion object {
         val users = mutableListOf(

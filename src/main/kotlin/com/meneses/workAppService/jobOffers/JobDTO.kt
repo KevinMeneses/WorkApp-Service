@@ -8,6 +8,5 @@ data class JobDTO(
     val salary: Double,
     val city: String,
     val latitude: Double,
-    val longitude: Double,
-    val status: String,
+    val longitude: Double
 )
