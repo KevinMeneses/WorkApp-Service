@@ -17,6 +17,9 @@ class JobRepository {
     fun findJobOfferById(jobId: String) =
         jobs.find { it.id == jobId }
 
+    fun findJobByIdAndWorkerId(jobId: String, workerId: String) =
+        jobs.find { it.id== jobId && it.workerId == workerId }
+
     fun updateJob(updatedJob: Job): Boolean {
         val index = jobs.indexOfFirst { it.id == updatedJob.id }
         return try {
@@ -61,7 +64,19 @@ class JobRepository {
                 longitude = 183.89,
                 status = Job.Status.IN_PROGRESS,
                 contractorId = "2"
-            )
+            ),
+            Job(
+                id = "3",
+                title = "Something 3",
+                description = "Hard :(",
+                salary = 100_000.0,
+                city = City.POPAYAN,
+                latitude = 163.23,
+                longitude = 183.89,
+                status = Job.Status.ACCEPTED,
+                contractorId = "2",
+                workerId = "0"
+            ),
         )
     }
 }
