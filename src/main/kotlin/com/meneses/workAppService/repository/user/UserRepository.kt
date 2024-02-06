@@ -17,6 +17,7 @@ class UserRepository {
     private companion object {
         val users = mutableListOf(
             User(
+                id = "0",
                 username = "Kevin",
                 password = "12345",
                 city = City.POPAYAN

@@ -14,6 +14,19 @@ class JobRepository {
 
     fun saveJob(job: Job) = jobs.add(job)
 
+    fun findJobOfferById(jobId: String) =
+        jobs.find { it.id == jobId }
+
+    fun updateJob(updatedJob: Job): Boolean {
+        val index = jobs.indexOfFirst { it.id == updatedJob.id }
+        return try {
+            jobs[index] = updatedJob
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     private companion object {
         val jobs = mutableListOf(
             Job(

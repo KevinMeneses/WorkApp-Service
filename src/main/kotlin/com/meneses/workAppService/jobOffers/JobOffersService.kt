@@ -5,7 +5,7 @@ import com.meneses.workAppService.repository.job.Job
 import com.meneses.workAppService.repository.job.JobRepository
 
 class JobOffersService(
-    private val jobRepository: JobRepository = JobRepository(),
+    private val jobRepository: JobRepository = JobRepository()
 ) {
     fun getJobOffersInMyCity(city: String) =
         jobRepository.findJobOffersByCity(city)
@@ -23,5 +23,21 @@ class JobOffersService(
         )
 
         return jobRepository.saveJob(job)
+    }
+
+    fun acceptJobOffer(acceptJobDTO: AcceptJobDTO): Boolean {
+        val jobOffer = jobRepository
+            .findJobOfferById(acceptJobDTO.jobId)
+            ?: throw RuntimeException("The Job to accept does not exist")
+
+        if (jobOffer.status != Job.Status.OFFERED)
+            throw RuntimeException("The Job is not in offer anymore")
+
+        val updatedJob = jobOffer.copy(
+            workerId = acceptJobDTO.workerId,
+            status = Job.Status.ACCEPTED
+        )
+
+        return jobRepository.updateJob(updatedJob)
     }
 }

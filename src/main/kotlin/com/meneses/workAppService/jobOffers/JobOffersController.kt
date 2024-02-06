@@ -1,11 +1,6 @@
 package com.meneses.workAppService.jobOffers
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("jobs_offers")
@@ -21,4 +16,9 @@ class JobOffersController(
     fun createJobOffer(
         @RequestBody(required = true) jobDTO: JobDTO
     ) = jobOffersService.createJobOffer(jobDTO)
+
+    @PutMapping("/accept")
+    fun acceptJobOffer(
+        @RequestBody(required = true) acceptJobDTO: AcceptJobDTO
+    ) = jobOffersService.acceptJobOffer(acceptJobDTO)
 }
