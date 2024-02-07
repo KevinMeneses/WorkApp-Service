@@ -29,6 +29,11 @@ class AssignedJobsController(
 
     @PutMapping("/start")
     fun startJob(
-        @RequestBody(required = true) startJobDTO: StartJobDTO
-    ) = assignedJobsService.startJob(startJobDTO)
+        @RequestBody(required = true) updateJobStatusDTO: UpdateJobStatusDTO
+    ) = assignedJobsService.startJob(updateJobStatusDTO)
+
+    @PutMapping("/finish")
+    fun finishJob(
+        @RequestBody(required = true) updateJobStatusDTO: UpdateJobStatusDTO
+    ) = assignedJobsService.finishJob(updateJobStatusDTO)
 }

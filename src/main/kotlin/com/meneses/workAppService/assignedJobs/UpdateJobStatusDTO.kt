@@ -1,6 +1,6 @@
 package com.meneses.workAppService.assignedJobs
 
-data class StartJobDTO(
+data class UpdateJobStatusDTO(
     val workerId: String,
     val jobId: String
 )
