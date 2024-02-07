@@ -1,5 +1,7 @@
 package com.meneses.workAppService.jobOffers
 
+import com.meneses.workAppService.jobOffers.dto.AcceptJobDTO
+import com.meneses.workAppService.jobOffers.dto.JobDTO
 import com.meneses.workAppService.repository.city.City
 import com.meneses.workAppService.repository.job.Job
 import com.meneses.workAppService.repository.job.JobRepository

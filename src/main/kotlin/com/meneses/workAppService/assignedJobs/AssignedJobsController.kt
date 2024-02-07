@@ -1,6 +1,8 @@
 package com.meneses.workAppService.assignedJobs
 
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -24,4 +26,9 @@ class AssignedJobsController(
     fun getUserInProgressJobs(
         @RequestParam("user_id", required = true) userId: String
     ) = assignedJobsService.getUserInProgressJobs(userId)
+
+    @PutMapping("/start")
+    fun startJob(
+        @RequestBody(required = true) startJobDTO: StartJobDTO
+    ) = assignedJobsService.startJob(startJobDTO)
 }

@@ -1,5 +1,7 @@
 package com.meneses.workAppService.jobOffers
 
+import com.meneses.workAppService.jobOffers.dto.AcceptJobDTO
+import com.meneses.workAppService.jobOffers.dto.JobDTO
 import org.springframework.web.bind.annotation.*
 
 @RestController

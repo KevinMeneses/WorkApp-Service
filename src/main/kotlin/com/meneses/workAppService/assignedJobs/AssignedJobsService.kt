@@ -20,4 +20,22 @@ class AssignedJobsService(
             userId = userId,
             status = Job.Status.IN_PROGRESS.name
         )
+
+    fun startJob(startJobDTO: StartJobDTO) : Boolean {
+        val startJob = jobRepository
+            .findJobByIdAndWorkerId(
+                jobId = startJobDTO.jobId,
+                workerId = startJobDTO.workerId
+            )
+            ?: throw RuntimeException("The job does not exist")
+
+        if (startJob.status != Job.Status.ACCEPTED)
+            throw RuntimeException("The job cannot be start")
+
+        val updatedJob = startJob.copy(
+            status = Job.Status.IN_PROGRESS
+        )
+
+        return jobRepository.updateJob(updatedJob)
+    }
 }
