@@ -21,11 +21,11 @@ class AssignedJobsService(
             status = Job.Status.IN_PROGRESS.name
         )
 
-    fun startJob(startJobDTO: StartJobDTO) : Boolean {
+    fun startJob(updateJobStatusDTO: UpdateJobStatusDTO) : Boolean {
         val startJob = jobRepository
             .findJobByIdAndWorkerId(
-                jobId = startJobDTO.jobId,
-                workerId = startJobDTO.workerId
+                jobId = updateJobStatusDTO.jobId,
+                workerId = updateJobStatusDTO.workerId
             )
             ?: throw RuntimeException("The job does not exist")
 
@@ -34,6 +34,24 @@ class AssignedJobsService(
 
         val updatedJob = startJob.copy(
             status = Job.Status.IN_PROGRESS
+        )
+
+        return jobRepository.updateJob(updatedJob)
+    }
+
+    fun finishJob(updateJobStatusDTO: UpdateJobStatusDTO): Boolean {
+        val finishJob = jobRepository
+            .findJobByIdAndWorkerId(
+                jobId = updateJobStatusDTO.jobId,
+                workerId = updateJobStatusDTO.workerId
+            )
+            ?: throw RuntimeException("The job does not exist")
+
+        if (finishJob.status != Job.Status.IN_PROGRESS)
+            throw RuntimeException("The job cannot be finished")
+
+        val updatedJob = finishJob.copy(
+            status = Job.Status.FINISHED
         )
 
         return jobRepository.updateJob(updatedJob)

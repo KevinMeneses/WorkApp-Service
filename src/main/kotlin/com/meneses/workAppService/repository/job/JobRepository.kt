@@ -63,7 +63,8 @@ class JobRepository {
                 latitude = 163.23,
                 longitude = 183.89,
                 status = Job.Status.IN_PROGRESS,
-                contractorId = "2"
+                contractorId = "2",
+                workerId = "2"
             ),
             Job(
                 id = "3",
