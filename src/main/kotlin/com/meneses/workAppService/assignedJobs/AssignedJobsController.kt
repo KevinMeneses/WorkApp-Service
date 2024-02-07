@@ -28,7 +28,7 @@ class AssignedJobsController(
     ) = assignedJobsService.getUserInProgressJobs(userId)
 
     @PutMapping("/start")
-    fun startJobs(
+    fun startJob(
         @RequestBody(required = true) startJobDTO: StartJobDTO
-    ) = assignedJobsService.startJobs(startJobDTO)
+    ) = assignedJobsService.startJob(startJobDTO)
 }

@@ -21,13 +21,12 @@ class AssignedJobsService(
             status = Job.Status.IN_PROGRESS.name
         )
 
-    fun startJobs(startJobDTO: StartJobDTO) : Boolean {
+    fun startJob(startJobDTO: StartJobDTO) : Boolean {
         val startJob = jobRepository
             .findJobByIdAndWorkerId(
                 jobId = startJobDTO.jobId,
                 workerId = startJobDTO.workerId
             )
-
             ?: throw RuntimeException("The job does not exist")
 
         if (startJob.status != Job.Status.ACCEPTED)
