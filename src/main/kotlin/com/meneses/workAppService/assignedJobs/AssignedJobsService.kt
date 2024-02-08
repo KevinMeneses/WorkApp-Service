@@ -56,4 +56,23 @@ class AssignedJobsService(
 
         return jobRepository.updateJob(updatedJob)
     }
+
+    fun cancelJob(updateJobStatusDTO: UpdateJobStatusDTO): Boolean {
+        val cancelJob = jobRepository
+            .findJobByIdAndWorkerId(
+                jobId = updateJobStatusDTO.jobId,
+                workerId = updateJobStatusDTO.workerId
+            )
+            ?: throw RuntimeException("The job does not exist")
+
+        if (cancelJob.status == Job.Status.OFFERED || cancelJob.status == Job.Status.FINISHED)
+            throw RuntimeException("The job cannot be canceled")
+
+        val updateJob = cancelJob.copy(
+            workerId = null,
+            status = Job.Status.OFFERED
+        )
+
+        return jobRepository.updateJob(updateJob)
+    }
 }

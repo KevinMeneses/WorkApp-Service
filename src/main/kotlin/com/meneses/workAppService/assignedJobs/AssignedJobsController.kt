@@ -36,4 +36,9 @@ class AssignedJobsController(
     fun finishJob(
         @RequestBody(required = true) updateJobStatusDTO: UpdateJobStatusDTO
     ) = assignedJobsService.finishJob(updateJobStatusDTO)
+
+    @PutMapping("/cancel")
+    fun cancelJob(
+        @RequestBody(required = true) updateJobStatusDTO: UpdateJobStatusDTO
+    ) = assignedJobsService.cancelJob(updateJobStatusDTO)
 }
