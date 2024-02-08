@@ -30,6 +30,13 @@ class JobRepository {
         }
     }
 
+    fun deleteJob(jobId: String): Boolean {
+        val index = jobs.indexOfFirst { it.id == jobId }
+        if (index == -1) return false
+        jobs.removeAt(index)
+        return true
+    }
+
     private companion object {
         val jobs = mutableListOf(
             Job(

@@ -42,4 +42,8 @@ class JobOffersService(
 
         return jobRepository.updateJob(updatedJob)
     }
+
+    fun deleteJob(jobId: String): Boolean {
+        return jobRepository.deleteJob(jobId)
+    }
 }

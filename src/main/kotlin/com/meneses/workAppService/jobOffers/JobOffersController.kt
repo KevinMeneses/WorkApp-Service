@@ -23,4 +23,9 @@ class JobOffersController(
     fun acceptJobOffer(
         @RequestBody(required = true) acceptJobDTO: AcceptJobDTO
     ) = jobOffersService.acceptJobOffer(acceptJobDTO)
+
+    @DeleteMapping("/delete")
+    fun deleteJob(
+        @RequestParam("jobId", required = true) jobId: String
+    ) =jobOffersService.deleteJob(jobId)
 }
