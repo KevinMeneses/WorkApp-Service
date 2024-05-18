@@ -1,9 +1,7 @@
 package com.meneses.workAppService.users
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import com.meneses.workAppService.users.dto.UserDTO
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user")
@@ -14,4 +12,9 @@ class UserController(
     fun getUserProfile(
         @RequestParam("user_id", required = true) userId: String
     ) = userProfileService.getUserProfile(userId)
+
+    @PutMapping("/profile")
+    fun updateUserProfile(
+        @RequestBody(required = true) userDTO: UserDTO
+    ) = userProfileService.updateUserProfile(userDTO)
 }

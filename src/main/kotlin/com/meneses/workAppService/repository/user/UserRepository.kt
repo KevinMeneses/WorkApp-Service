@@ -14,6 +14,16 @@ class UserRepository {
     fun findUserById(userId: String) =
         users.find { it.id == userId }
 
+    fun updateUser(updatedUser: User): Boolean {
+        val index = users.indexOfFirst { it.id == updatedUser.id }
+        return try {
+            users[index] = updatedUser
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     private companion object {
         val users = mutableListOf(
             User(
